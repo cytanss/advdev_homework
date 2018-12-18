@@ -29,3 +29,17 @@ echo "Setting up Nexus in project $GUID-nexus"
 # oc new-app -f ../templates/nexus.yaml --param .....
 
 # To be Implemented by Student
+oc new-app -f ../templates/nexus3-persistent-template.yaml -n $GUID-nexus
+while : ; do
+  echo "Checking if Nexus is Ready..."
+  oc get pod -n ${GUID}-nexus|grep 'nexus3\-'|grep -v deploy|grep "1/1"
+  [[ "$?" == "1" ]] || break
+#  echo "$?"
+  echo "...no. Sleeping 15 seconds."
+  sleep 15
+done
+./configure_nexus.sh admin admin123 http://$(oc get route nexus3 --template='{{ .spec.host }}')
+oc expose dc nexus3 --port=5000 --name=nexus-registry
+oc create route edge nexus-registry --service=nexus-registry --port=5000
+oc annotate route nexus3 console.alpha.openshift.io/overview-app-route=true
+oc annotate route nexus-registry console.alpha.openshift.io/overview-app-route=false
