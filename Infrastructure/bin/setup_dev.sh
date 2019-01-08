@@ -32,7 +32,7 @@ oc create configmap mlbparks-config -n ${GUID}-parks-dev \
 oc set env dc/mlbparks --from=configmap/mlbparks-config -n ${GUID}-parks-dev
 oc set triggers dc/mlbparks --remove-all -n ${GUID}-parks-dev
 oc expose dc mlbparks --port 8080 -n ${GUID}-parks-dev
-oc expose svc mlbparks -n ${GUID}-parks-dev
+oc expose svc mlbparks -l type=parksmap-backend -n ${GUID}-parks-dev
 oc set probe dc/mlbparks -n ${GUID}-parks-dev --liveness --failure-threshold 5 --initial-delay-seconds 30 -- echo ok 
 oc set probe dc/mlbparks --readiness --failure-threshold 3 --initial-delay-seconds 60 --get-url=http://:8080/ws/healthz/ -n ${GUID}-parks-dev
 
@@ -46,11 +46,11 @@ oc create configmap nationalparks-config -n ${GUID}-parks-dev \
 --from-literal="APPNAME=National Parks (Dev)"
 
 oc new-build --binary=true --name="nationalparks" redhat-openjdk18-openshift:1.2 -n ${GUID}-parks-dev
-oc new-app ${GUID}-parks-dev/nationalparks:0.0-0 --name=nationalparks -l type=parksmap-backend --allow-missing-imagestream-tags=true -n ${GUID}-parks-dev
+oc new-app ${GUID}-parks-dev/nationalparks:0.0-0 --name=nationalparks --allow-missing-imagestream-tags=true -n ${GUID}-parks-dev
 
 oc set env dc/nationalparks --from=configmap/nationalparks-config -n ${GUID}-parks-dev
 oc set triggers dc/nationalparks --remove-all -n ${GUID}-parks-dev
-oc expose dc nationalparks --port 8080 -n ${GUID}-parks-dev
+oc expose dc nationalparks  --port 8080 -n ${GUID}-parks-dev
 oc expose svc nationalparks -l type=parksmap-backend -n ${GUID}-parks-dev
 oc set probe dc/nationalparks -n ${GUID}-parks-dev --liveness --failure-threshold 5 --initial-delay-seconds 30 -- echo ok
 oc set probe dc/nationalparks --readiness --failure-threshold 3 --initial-delay-seconds 60 --get-url=http://:8080/ws/healthz/ -n ${GUID}-parks-dev
