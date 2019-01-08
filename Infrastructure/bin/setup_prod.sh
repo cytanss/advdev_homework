@@ -18,10 +18,10 @@ oc policy add-role-to-group system:image-puller system:serviceaccounts:${GUID}-p
 oc policy add-role-to-user view --serviceaccount=default -n ${GUID}-parks-prod
 
 # MLBPark
-oc new-app ${GUID}-parks-dev/mlbparks:0.0-0 --name=mlbparks-blue  --allow-missing-imagestream-tags=true -n ${GUID}-parks-prod
+oc new-app ${GUID}-parks-dev/mlbparks:0.0 --name=mlbparks-blue  --allow-missing-imagestream-tags=true -n ${GUID}-parks-prod
 oc set triggers dc/mlbparks-blue  --remove-all -n ${GUID}-parks-prod
 
-oc new-app ${GUID}-parks-dev/mlbparks:0.0-0 --name=mlbparks-green --allow-missing-imagestream-tags=true -n ${GUID}-parks-prod
+oc new-app ${GUID}-parks-dev/mlbparks:0.0 --name=mlbparks-green --allow-missing-imagestream-tags=true -n ${GUID}-parks-prod
 oc set triggers dc/mlbparks-green --remove-all -n ${GUID}-parks-prod
 
 oc expose dc/mlbparks-green --port 8080 -n ${GUID}-parks-prod
@@ -38,8 +38,8 @@ oc create configmap mlbparks-config --from-literal="APPNAME=MLB Parks (Green)" \
 oc set env dc/mlbparks-green --from=configmap/mlbparks-config -n ${GUID}-parks-prod
 
 # Nationalparks
-oc new-app ${GUID}-parks-dev/nationalparks:0.0-0 --name=nationalparks-blue  --allow-missing-imagestream-tags=true -n ${GUID}-parks-prod
-oc new-app ${GUID}-parks-dev/nationalparks:0.0-0 --name=nationalparks-green --allow-missing-imagestream-tags=true -n ${GUID}-parks-prod
+oc new-app ${GUID}-parks-dev/nationalparks:0.0 --name=nationalparks-blue  --allow-missing-imagestream-tags=true -n ${GUID}-parks-prod
+oc new-app ${GUID}-parks-dev/nationalparks:0.0 --name=nationalparks-green --allow-missing-imagestream-tags=true -n ${GUID}-parks-prod
 oc set triggers dc/nationalparks-blue  --remove-all -n ${GUID}-parks-prod
 oc set triggers dc/nationalparks-green --remove-all -n ${GUID}-parks-prod
 oc expose dc/nationalparks-green --port 8080 -n ${GUID}-parks-prod
@@ -56,8 +56,8 @@ oc create configmap nationalparks-config --from-literal="APPNAME=National Parks 
 oc set env dc/nationalparks-green --from=configmap/nationalparks-config -n ${GUID}-parks-prod
 
 # Parksmap
-oc new-app ${GUID}-parks-dev/parksmap:0.0-0 --name=parksmap-blue  --allow-missing-imagestream-tags=true -n ${GUID}-parks-prod
-oc new-app ${GUID}-parks-dev/parksmap:0.0-0 --name=parksmap-green --allow-missing-imagestream-tags=true -n ${GUID}-parks-prod
+oc new-app ${GUID}-parks-dev/parksmap:0.0 --name=parksmap-blue  --allow-missing-imagestream-tags=true -n ${GUID}-parks-prod
+oc new-app ${GUID}-parks-dev/parksmap:0.0 --name=parksmap-green --allow-missing-imagestream-tags=true -n ${GUID}-parks-prod
 oc set triggers dc/parksmap-blue  --remove-all -n ${GUID}-parks-prod
 oc set triggers dc/parksmap-green --remove-all -n ${GUID}-parks-prod
 oc expose dc/parksmap-green --port 8080 -n ${GUID}-parks-prod
