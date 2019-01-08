@@ -105,8 +105,9 @@ podTemplate(
   // Blue/Green Deployment into Production
   // -------------------------------------
   // Do not activate the new version yet.
-  def destApp   = "tasks-green"
-  def activeApp = ""
+  def destApp   = "mlbparks-green"
+  def activeApp = "mlbparks-blue"
+  def destcfgMap = "Green"
 
   stage('Blue/Green Production Deployment') {
     echo "Deploying Blue/Green Production"
