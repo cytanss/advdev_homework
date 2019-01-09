@@ -35,3 +35,4 @@ oc new-app jenkins-persistent --param ENABLE_OAUTH=true --param MEMORY_LIMIT=4Gi
 
 oc create -f ../templates/mlbparks-pipeline.yaml -n ${GUID}-jenkins
 oc create -f ../templates/nationalparks-pipeline.yaml -n ${GUID}-jenkins
+oc create -f ../templates/parksmap-pipeline.yaml -n ${GUID}-jenkins
