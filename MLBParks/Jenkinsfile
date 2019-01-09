@@ -131,7 +131,7 @@ podTemplate(
                 --from-literal=DB_PORT=27017 \
                 --from-literal=DB_USERNAME=mongodb_user \
                 --from-literal=DB_PASSWORD=mongodb_password \
-                --from-literal=DB_NAME=parks \
+                --from-literal=DB_NAME=mongodb \
                 --from-literal=DB_REPLICASET=rs0 \
                 -n ${GUID}-parks-prod"
       
