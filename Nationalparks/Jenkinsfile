@@ -116,7 +116,7 @@ podTemplate(
       
       sh "oc delete configmap nationalparks-config -n ${GUID}-parks-prod --ignore-not-found=true"
       
-      sh "oc create configmap nationalparks-config --from-literal=APPNAME='MLB Parks (${destcfgMap})' \
+      sh "oc create configmap nationalparks-config --from-literal=APPNAME='National Parks (${destcfgMap})' \
                 --from-literal=DB_HOST=mongodb \
                 --from-literal=DB_PORT=27017 \
                 --from-literal=DB_USERNAME=mongodb \
