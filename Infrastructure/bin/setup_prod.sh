@@ -35,7 +35,7 @@ oc create configmap mlbparks-config --from-literal="APPNAME=MLB Parks (Green)" \
     --from-literal="DB_PORT=27017" \
     --from-literal="DB_USERNAME=mongodb_user" \
     --from-literal="DB_PASSWORD=mongodb_password" \
-    --from-literal="DB_NAME=parks" \
+    --from-literal="DB_NAME=mongodb" \
     --from-literal="DB_REPLICASET=rs0" \
     -n ${GUID}-parks-prod
 oc set env dc/mlbparks-green --from=configmap/mlbparks-config -n ${GUID}-parks-prod
@@ -53,7 +53,7 @@ oc create configmap nationalparks-config --from-literal="APPNAME=National Parks 
     --from-literal="DB_PORT=27017" \
     --from-literal="DB_USERNAME=mongodb_user" \
     --from-literal="DB_PASSWORD=mongodb_password" \
-    --from-literal="DB_NAME=parks" \
+    --from-literal="DB_NAME=mongodb" \
     --from-literal="DB_REPLICASET=rs0" \
     -n ${GUID}-parks-prod
 oc set env dc/nationalparks-green --from=configmap/nationalparks-config -n ${GUID}-parks-prod
