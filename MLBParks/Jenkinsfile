@@ -1,6 +1,6 @@
 // Jenkinsfile for MLBParks
 podTemplate(
-  label: "jenkins-agent-appdev",
+  label: "skopeo-pod",
   cloud: "openshift",
   inheritFrom: "maven",
   containers: [
@@ -12,7 +12,7 @@ podTemplate(
     )
   ]
 ) {
-  node('jenkins-agent-appdev') {
+  node('skopeo-pod') {
     echo "GUID: ${GUID}"
     echo "CLUSTER: ${CLUSTER}"
 
