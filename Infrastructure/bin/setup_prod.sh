@@ -33,8 +33,8 @@ oc expose svc/mlbparks-green --name mlbparks -n ${GUID}-parks-prod
 oc create configmap mlbparks-config --from-literal="APPNAME=MLB Parks (Green)" \
     --from-literal="DB_HOST=mongodb" \
     --from-literal="DB_PORT=27017" \
-    --from-literal="DB_USERNAME=mongodb" \
-    --from-literal="DB_PASSWORD=mongodb" \
+    --from-literal="DB_USERNAME=mongodb_user" \
+    --from-literal="DB_PASSWORD=mongodb_password" \
     --from-literal="DB_NAME=parks" \
     --from-literal="DB_REPLICASET=rs0" \
     -n ${GUID}-parks-prod
@@ -51,8 +51,8 @@ oc expose svc/nationalparks-green --name nationalparks -n ${GUID}-parks-prod
 oc create configmap nationalparks-config --from-literal="APPNAME=National Parks (Green)" \
     --from-literal="DB_HOST=mongodb" \
     --from-literal="DB_PORT=27017" \
-    --from-literal="DB_USERNAME=mongodb" \
-    --from-literal="DB_PASSWORD=mongodb" \
+    --from-literal="DB_USERNAME=mongodb_user" \
+    --from-literal="DB_PASSWORD=mongodb_password" \
     --from-literal="DB_NAME=parks" \
     --from-literal="DB_REPLICASET=rs0" \
     -n ${GUID}-parks-prod

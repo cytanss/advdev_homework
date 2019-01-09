@@ -52,7 +52,7 @@ public class MLBParks {
             MongoDatabase db = con.connect();
             return con.getAll(db);
         }catch(Exception e){
-            System.out.println("[ERROR] Connecting to database");
+            System.out.println("[ERROR] Connecting to database"+"\n"+e.printStackTrace());
         }
         return new ArrayList<DataPoint>();
     }
