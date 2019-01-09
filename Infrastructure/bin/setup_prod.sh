@@ -27,8 +27,8 @@ oc set triggers dc/mlbparks-blue  --remove-all -n ${GUID}-parks-prod
 oc new-app ${GUID}-parks-dev/mlbparks:0.0 --name=mlbparks-green --allow-missing-imagestream-tags=true -n ${GUID}-parks-prod
 oc set triggers dc/mlbparks-green --remove-all -n ${GUID}-parks-prod
 
-oc expose dc/mlbparks-green --port 8080 -n ${GUID}-parks-prod
-oc expose svc/mlbparks-green -l type=parksmap-backend --name mlbparks -n ${GUID}-parks-prod
+oc expose dc/mlbparks-green -l type=parksmap-backend --port 8080 -n ${GUID}-parks-prod
+oc expose svc/mlbparks-green --name mlbparks -n ${GUID}-parks-prod
 
 oc create configmap mlbparks-config --from-literal="APPNAME=MLB Parks (Green)" \
     --from-literal="DB_HOST=mongodb" \
@@ -45,8 +45,8 @@ oc new-app ${GUID}-parks-dev/nationalparks:0.0 --name=nationalparks-blue  --allo
 oc new-app ${GUID}-parks-dev/nationalparks:0.0 --name=nationalparks-green --allow-missing-imagestream-tags=true -n ${GUID}-parks-prod
 oc set triggers dc/nationalparks-blue  --remove-all -n ${GUID}-parks-prod
 oc set triggers dc/nationalparks-green --remove-all -n ${GUID}-parks-prod
-oc expose dc/nationalparks-green --port 8080 -n ${GUID}-parks-prod
-oc expose svc/nationalparks-green -l type=parksmap-backend --name nationalparks -n ${GUID}-parks-prod
+oc expose dc/nationalparks-green -l type=parksmap-backend --port 8080 -n ${GUID}-parks-prod
+oc expose svc/nationalparks-green --name nationalparks -n ${GUID}-parks-prod
 
 oc create configmap nationalparks-config --from-literal="APPNAME=National Parks (Green)" \
     --from-literal="DB_HOST=mongodb" \
