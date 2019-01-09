@@ -10,8 +10,6 @@ items:
     ports:
     - name: mongodb
       port: 27017
-      protocol: TCP
-      targetPort: 27017
     selector:
       name: mongodb
 - apiVersion: v1
@@ -23,11 +21,10 @@ items:
       name: mongodb
     name: mongodb-internal
   spec:
+    clusterIP: None
     ports:
     - name: mongodb
       port: 27017
-      protocol: TCP
-      targetPort: 27017
     selector:
       name: mongodb
 - apiVersion: apps/v1
@@ -67,7 +64,6 @@ items:
           name: mongo-container
           ports:
           - containerPort: 27017
-            protocol: TCP
           readinessProbe:
             exec:
               command:
