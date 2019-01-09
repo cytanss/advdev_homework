@@ -14,7 +14,7 @@ echo "Setting up Parks Production Environment in project ${GUID}-parks-prod"
 
 # To be Implemented by Student
 
-oc new-app -f ./Infrastructure/templates/mongodb-statefulset.yaml -n ${GUID}-parks-prod
+oc new-app -f ../templates/mongodb-statefulset.yaml -n ${GUID}-parks-prod
 
 oc policy add-role-to-user edit system:serviceaccount:${GUID}-jenkins:jenkins -n ${GUID}-parks-prod
 oc policy add-role-to-group system:image-puller system:serviceaccounts:${GUID}-parks-prod -n ${GUID}-parks-dev
